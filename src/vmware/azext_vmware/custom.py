@@ -189,6 +189,12 @@ def privatecloud_rotate_nsxt_password():
 
 def cluster_create(client: AVSClient, resource_group_name, name, sku, private_cloud, size=None, hosts=None):
     from azext_vmware.vendored_sdks.avs_client.models import Sku, Cluster
+    try: 
+        Cluster
+    if name==Cluster:
+        except:
+        print(f"Cluster with name {name} exists in private-cloud {private_cloud}")
+        quit()
     return client.clusters.begin_create_or_update(resource_group_name=resource_group_name, private_cloud_name=private_cloud, cluster_name=name, cluster=Cluster(sku=Sku(name=sku), cluster_size=size, hosts=hosts))
 
 
